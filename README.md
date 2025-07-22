@@ -90,10 +90,25 @@ If using minikube or kind, they do not create a loadbalancer IP. You will need t
 ### Minikube
 
 minikube requires that you create a tunnel, and only then would you be able to get an IP for the loadbalance service: 
+
 ```bash
 :~$ minikube tunnel
 ```
 
+But one can still access the application via port forwarding.
 
+```bash
+:~$ minikube service kiada --url
+```
 
+This is the IP of the minikube VM. The service is accessible via the same port number on all your worker nodes, regardless of whethe you're using minikube or any other kubernetes cluster.
 
+## Horizontal Scalling
+
+With kubernetes, scaling out an application, i.e horizontal scalling is trivial to do. To run additional instances, you only need to scale the Deployment object with the following command. 
+
+```bash
+:~$ kubectl scale deployment kiada --replica=3
+```
+
+This is one of the most fundamental principles in kubernetes. Instead of telling kubernetes what to do, you simply set a new desired state of the system and let kubernetes achieve it. This commands actually modifies the Deployment object.
