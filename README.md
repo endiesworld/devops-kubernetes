@@ -95,7 +95,24 @@ minikube requires that you create a tunnel, and only then would you be able to g
 :~$ minikube tunnel
 ```
 
+<<<<<<< HEAD
 But one can still access the application via port forwarding.
+=======
+## kubectl config priority order
+
+1. --kubeconfig flag (highest priority)
+```bash
+:~$ kubectl get pods --kubeconfig=/path/to/file.yaml
+```
+
+2. KUBECONFIG environment variable
+```bash
+:~$ export KUBECONFIG=/path/to/file.yaml
+:~$ kubectl get pods
+```
+
+3. Default location ~/.kube/config (lowest priority, fallback)
+>>>>>>> 484253b (Added helm for kubernete package managemant)
 
 ```bash
 :~$ minikube service kiada --url
